@@ -23,3 +23,21 @@ jobs:
             echo "Node version: $(node --version)"
             echo "NPM version: $(npm --version)"
             echo "Working Directory: $(pwd)"
+    test:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout the Code
+          # clones github repository
+          uses: actions/checkout@v4
+        
+        - name: Use Node Version 4
+          # uses specific node version
+          uses: actions/setup-node@v4
+        
+        - name: Install Dependencies
+          # installs all of our dependencies from package-lock.json
+          run: npm ci
+        
+        - name: Run Simulated Test
+          run: npm test
