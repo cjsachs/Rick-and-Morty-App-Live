@@ -41,3 +41,31 @@ jobs:
         
         - name: Run Simulated Test
           run: npm test
+
+    deploy:
+      needs: test
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout the Code
+          # clones github repository
+          uses: actions/checkout@v4
+        
+        - name: Use Node Version 4
+          # uses specific node version
+          uses: actions/setup-node@v4
+        
+        - name: Install Dependencies
+          # installs all of our dependencies from package-lock.json
+          run: npm ci
+        
+        - name: Install Vercel CLI
+          run: npm install --global vercel@latest
+
+        - name: Pull Vercel Environment Info
+          run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+        - name: Build Vercel Environment
+          run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+        - name: Predeploy Vercel Project
+          run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
