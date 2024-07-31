@@ -32,7 +32,7 @@ const CharactersPage = () => {
 
   return (
     <Container>
-      <h1 className='text-center'>All Characters - Deploying with Vercel</h1>
+      <h1 className='text-center'>All Characters - Deploying with Vercel - Another one</h1>
       <Row>
         {data.characters.results.map(({ id, image, name }: ICharacter) => (
             <Col key={id}>
