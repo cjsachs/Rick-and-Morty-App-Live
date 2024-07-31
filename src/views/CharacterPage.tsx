@@ -10,7 +10,7 @@ interface IEpisode {
 }
 
 const CharacterPage = () => {
-  const [show, setShow] = useState(true);
+  const [, setShow] = useState(true);
   const { id } = useParams();
   const { data, loading, error } = useQuery(GET_CHARACTER, {
     variables: { id }

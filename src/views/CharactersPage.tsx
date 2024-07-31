@@ -12,7 +12,7 @@ interface ICharacter {
 
 const CharactersPage = () => {
   const { data, loading, error } = useQuery(GET_CHARACTERS);
-  const [show, setShow] = useState(true);
+  const [, setShow] = useState(true);
 
   if (loading) {
     return (
